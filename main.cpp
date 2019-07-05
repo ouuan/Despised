@@ -98,7 +98,7 @@ char PROBLEM[PROBLEM_CNT][6][1024] = {	{"NOI 机试使用的操作系统是", "Linux", "Wi
 										{"选手可以不使用IDE环境编辑程序源代码吗", "可以", "不可以", "可能可以", "可能不可以", "1"},
 										{"选手回答填空题，提交的答案中可以包含引号吗", "不可以", "可以", "可能可以", "可能不可以", "1"},
 										{"选手程序在某测试点上的运行时间仅比时限多 0.005 秒，算不算超时", "算", "不算", "可能算", "可能不算", "1"},
-										{"在NOI上机考试中，允许选手使用的编程语言包括", "C", "C++", "Pascal", "C++11", "123"},
+										{"在NOI上机考试中，允许选手使用的编程语言包括", "C", "C++", "Pascal", "Python", "123"},
 										{"NOI比赛的题目类型有", "非交互式程序题", "交互式程序题", "答案提交题", "填空题", "123"},
 										{"选手比赛中提交的有效文件类型有", "答案文件", "源程序", "输出文件", "输入文件", "12"},
 										{"选手提交的程序不得进行的操作包括", "试图访问网络", "使用 fork 或其它线程/进程生成函数", "打开或创建题目规定的输入/输出文件之外的其它文件", "运行其它程序", "1234"},
@@ -129,7 +129,7 @@ char PROBLEM[PROBLEM_CNT][6][1024] = {	{"NOI 机试使用的操作系统是", "Linux", "Wi
 										{"计算机内所有的信息都是以什么形式表示的", "二进制数码", "十进制数码", "十六进制数码", "八进制数码", "1"},
 										{"计算机直接识别和执行的语言是", "机器语言", "汇编语言", "二进制", "高级语言", "1"},
 										{"Linux 是一个怎样的操作系统，从而可以免费获得其源码", "开源", "闭源", "古老", "未编译", "1"},
-										{"NOI 的中文意思是", "全国青少年信息学奥林匹克竞赛", "全国青少年信息学奥林匹克联赛", "国际青少年信息学奥林匹克竞赛", "国际青少年信息学奥林匹克联赛", "1"},
+										{"NOI 的中文意思是", "全国信息学奥林匹克竞赛", "全国信息学奥林匹克联赛", "国际信息学奥林匹克竞赛", "国际信息学奥林匹克联赛", "1"},
 										{"字长为 32bit 的计算机,表示它能作为一个整体进行传送的数据长度可为多少个字节", "4", "1", "8", "32", "1"},
 										{"一个字节由相邻的多少个二进制位组成", "8", "1", "4", "16", "1"},
 										{"二进制数“10”化为十进制数是", "2", "1", "10", "0", "1"},
@@ -145,15 +145,15 @@ char PROBLEM[PROBLEM_CNT][6][1024] = {	{"NOI 机试使用的操作系统是", "Linux", "Wi
 										{"IOI2018 是第几届 IOI？", "31", "32", "35", "36", "1"},
 										{"第 12 届 IOI 是哪一年在北京举办的", "2000", "1984", "1985", "2017", "1"}};
 
-bool wrong[PROBLEM_CNT];
 double timetot[PROBLEM_CNT], allTime;
-int ok[PROBLEM_CNT], tot[PROBLEM_CNT], allok, alltot, combo;
+int ok[PROBLEM_CNT], tot[PROBLEM_CNT], allok, alltot, combo, distinct;
 
 typedef pair<double, int> pdi;
 priority_queue<pdi> q;
 
 void ac(int id, double t)
 {
+	if (!ok[id]) ++distinct;
 	++ok[id];
 	++tot[id];
 	++allok;
@@ -167,7 +167,6 @@ void ac(int id, double t)
 
 void wa(int id, int * p, set<int> ans)
 {
-	wrong[id] = true;
 	++tot[id];
 	++alltot;
 	combo = 0;
@@ -196,7 +195,7 @@ void ask(int id)
 	int p[5] = {0, 1, 2, 3, 4};
 	random_shuffle(p + 1, p + 5);
 	string ouf;
-	printf("AC Rate: %d / %d\tCombo: %d\tAverageTime: %.2lf\n\n", allok, alltot, combo, allTime / allok);
+	printf("distinct AC: %d / %d\tAC Rate: %d / %d\tCombo: %d\tAverageTime: %.2lf\n\n", distinct, PROBLEM_CNT, allok, alltot, combo, allTime / allok);
 	cout << PROBLEM[id][0] << endl;
 	cout << "1) " << PROBLEM[id][p[1]] << endl;
 	cout << "2) " << PROBLEM[id][p[2]] << endl;
@@ -218,7 +217,8 @@ void signalHandler(int signum)
 	ofstream fout("wrong.out");
 	for (int i = 0; i < PROBLEM_CNT; ++i)
 	{
-		if (!wrong[i]) continue;
+		if (ok[i] == tot[i]) continue;
+		fout << "AC Rate: " << ok[i] << " / " << tot[i] << endl;
 		fout << PROBLEM[i][0] << endl;
 		fout << "1) " << PROBLEM[i][1] << endl;
 		fout << "2) " << PROBLEM[i][2] << endl;
