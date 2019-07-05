@@ -203,6 +203,7 @@ void ask(int id)
 	cout << "4) " << PROBLEM[id][p[4]] << endl;
 	int startTime = clock();
 	cin >> ouf;
+	if (ouf.empty()) return; 
 	int endTime = clock();
 	set<int> ans, out;
 	string answer = PROBLEM[id][5];
