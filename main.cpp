@@ -142,7 +142,7 @@ char PROBLEM[PROBLEM_CNT][6][1024] = {	{"NOI 机试使用的操作系统是", "Linux", "Wi
 										{"NOI 比赛每场上机考试的比赛时间是", "5 小时", "3 小时", "10 小时", "4 小时", "1"},
 										{"首届 NOI 是在哪一年举办的", "1984", "2000", "1985", "2017", "1"},
 										{"NOI2019 是第几届 NOI？", "36", "30", "31", "37", "1"},
-										{"IOI2018 是第几届 IOI？", "31", "32", "35", "36", "1"},
+										{"IOI2019 是第几届 IOI？", "31", "32", "35", "36", "1"},
 										{"第 12 届 IOI 是哪一年在北京举办的", "2000", "1984", "1985", "2017", "1"}};
 
 double timetot[PROBLEM_CNT], allTime;
@@ -237,28 +237,6 @@ int main()
 	
 	puts("答题时请输出正确选项的编号，可能多选，编号间不带空格，顺序随意\n");
 	puts("https://github.com/ouuan/Despised\n");
-	puts(R"(MIT License
-
-Copyright (c) 2019 ouuan
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-)");
 	system("pause");
 	
 	for (int i = 0; i < PROBLEM_CNT; ++i) q.push(pdi(rand() * 1.0 / RAND_MAX, i));
