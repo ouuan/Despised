@@ -3,6 +3,7 @@
 #include <fstream>
 #include <csignal>
 #include <cstdlib>
+#include <chrono>
 #include <cstdio>
 #include <ctime>
 #include <queue>
@@ -151,6 +152,15 @@ int ok[PROBLEM_CNT], tot[PROBLEM_CNT], allok, alltot, combo, distinct;
 typedef pair<double, int> pdi;
 priority_queue<pdi> q;
 
+void pause()
+{
+#ifdef __unix__
+	system("read -n1");
+#else
+	system("pause");
+#endif
+}
+
 void ac(int id, double t)
 {
 	if (!ok[id]) ++distinct;
@@ -162,7 +172,7 @@ void ac(int id, double t)
 	allTime += t;
 	timetot[id] += t;
 	printf("\033[44;42;1mAccepted\033[0m in %.2lf seconds.\n\n", t);
-	system("pause");
+	pause();
 }
 
 void wa(int id, int * p, set<int> ans)
@@ -186,12 +196,16 @@ void wa(int id, int * p, set<int> ans)
 	for (auto k : ans2) answer[tmp++] = k + '0';
 	answer[tmp] = '\0';
 	printf("\033[37;41;1mWrong Answer\033[0m, expected %s\n\n", answer);
-	system("pause");
+	pause();
 }
 
 void ask(int id)
 {
+#ifdef __unix__
+	system("clear");
+#else
 	system("cls");
+#endif
 	int p[5] = {0, 1, 2, 3, 4};
 	random_shuffle(p + 1, p + 5);
 	string ouf;
@@ -201,15 +215,15 @@ void ask(int id)
 	cout << "2) " << PROBLEM[id][p[2]] << endl;
 	cout << "3) " << PROBLEM[id][p[3]] << endl;
 	cout << "4) " << PROBLEM[id][p[4]] << endl;
-	int startTime = clock();
+	auto startTime = chrono::steady_clock::now();
 	cin >> ouf;
 	if (ouf.empty()) return; 
-	int endTime = clock();
+	auto endTime = chrono::steady_clock::now();
 	set<int> ans, out;
 	string answer = PROBLEM[id][5];
 	for (auto k : answer) ans.insert(k - '0');
 	for (auto k : ouf) out.insert(p[k - '0']);
-	if (ans == out) ac(id, 1.0 * (endTime - startTime) / CLOCKS_PER_SEC);
+	if (ans == out) ac(id, 1.0 * chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count() / 1000);
 	else wa(id, p, ans);
 }
 
@@ -237,7 +251,7 @@ int main()
 	
 	puts("答题时请输出正确选项的编号，可能多选，编号间不带空格，顺序随意\n");
 	puts("https://github.com/ouuan/Despised\n");
-	system("pause");
+	pause();
 	
 	for (int i = 0; i < PROBLEM_CNT; ++i) q.push(pdi(rand() * 1.0 / RAND_MAX, i));
 	
