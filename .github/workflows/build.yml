@@ -1,0 +1,26 @@
+name: Build Test
+
+on:
+  push:
+    paths-ignore:
+      - "*.md"
+  pull_request:
+    paths-ignore:
+      - "*.md"
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: g++ main.cpp -o despised -std=c++11
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: despised-${{ matrix.os }}-${{ github.sha }}
+          path: despised*
