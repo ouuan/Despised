@@ -198,6 +198,22 @@ void wa(int id, int * p, set<int> ans)
 	pause();
 }
 
+void signalHandler(int signum)
+{
+	ofstream fout("wrong.txt");
+	for (int i = 0; i < PROBLEM_CNT; ++i)
+	{
+		if (ok[i] == tot[i]) continue;
+		fout << "AC Rate: " << ok[i] << " / " << tot[i] << endl;
+		fout << PROBLEM[i][0] << endl;
+		fout << "1) " << PROBLEM[i][1] << endl;
+		fout << "2) " << PROBLEM[i][2] << endl;
+		fout << "3) " << PROBLEM[i][3] << endl;
+		fout << "4) " << PROBLEM[i][4] << endl << endl;
+	}
+    exit(0);
+}
+
 void ask(int id)
 {
 #ifdef __unix__
@@ -216,6 +232,7 @@ void ask(int id)
 	cout << "4) " << PROBLEM[id][p[4]] << endl;
 	auto startTime = chrono::steady_clock::now();
 	cin >> ouf;
+	if (cin.eof()) signalHandler(0);
 	if (ouf.empty()) return; 
 	auto endTime = chrono::steady_clock::now();
 	set<int> ans, out;
@@ -224,22 +241,6 @@ void ask(int id)
 	for (auto k : ouf) out.insert(p[k - '0']);
 	if (ans == out) ac(id, 1.0 * chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count() / 1000);
 	else wa(id, p, ans);
-}
-
-void signalHandler(int signum)
-{
-	ofstream fout("wrong.txt");
-	for (int i = 0; i < PROBLEM_CNT; ++i)
-	{
-		if (ok[i] == tot[i]) continue;
-		fout << "AC Rate: " << ok[i] << " / " << tot[i] << endl;
-		fout << PROBLEM[i][0] << endl;
-		fout << "1) " << PROBLEM[i][1] << endl;
-		fout << "2) " << PROBLEM[i][2] << endl;
-		fout << "3) " << PROBLEM[i][3] << endl;
-		fout << "4) " << PROBLEM[i][4] << endl << endl;
-	}
-    exit(signum);
 }
 
 int main()
