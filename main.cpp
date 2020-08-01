@@ -3,6 +3,7 @@
 #include <fstream>
 #include <csignal>
 #include <cstdlib>
+#include <cstring>
 #include <chrono>
 #include <cstdio>
 #include <queue>
@@ -209,6 +210,7 @@ void ask(int id)
 	random_shuffle(p + 1, p + 5);
 	string ouf;
 	printf("distinct AC: %d / %d\tAC Rate: %d / %d\tCombo: %d\tAverageTime: %.2lf\n\n", distinct, PROBLEM_CNT, allok, alltot, combo, allTime / allok);
+	if (strlen(PROBLEM[id][5])>1) cout << "本题为多选题。" << endl;
 	cout << PROBLEM[id][0] << endl;
 	cout << "1) " << PROBLEM[id][p[1]] << endl;
 	cout << "2) " << PROBLEM[id][p[2]] << endl;
