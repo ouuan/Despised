@@ -28,7 +28,7 @@ struct Problem
     double totalAcTime;
     int acCount, totalCount;
 
-    Problem(const string _statement, const vector<Option> &_options) : statement(_statement), options(_options), totalAcTime(0), acCount(0), totalCount(0)
+    Problem(const string &_statement, const vector<Option> &_options) : statement(_statement), options(_options), totalAcTime(0), acCount(0), totalCount(0)
     {}
 
     double weight() const
