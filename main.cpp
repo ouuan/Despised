@@ -299,6 +299,10 @@ int main()
 {
     signal(SIGINT, signalHandler);
 
+#ifndef __unix__
+    system("chcp 65001");
+#endif
+
     clearScreen();
     puts("答题时请输入正确选项的编号，可能多选，编号间不带空格，顺序随意，输入 q 退出\n");
     puts("https://github.com/ouuan/Despised\n");
