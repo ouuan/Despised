@@ -217,19 +217,19 @@ priority_queue<pair<double, int>> q;
 
 void pause()
 {
-#ifdef __unix__
-    system("read -n1");
-#else
+#ifdef _WIN32
     system("pause");
+#else
+    system("read -n1");
 #endif
 }
 
 void clearScreen()
 {
-#ifdef __unix__
-    system("clear");
-#else
+#ifdef _WIN32
     system("cls");
+#else
+    system("clear");
 #endif
 }
 
@@ -299,7 +299,7 @@ int main()
 {
     signal(SIGINT, signalHandler);
 
-#ifndef __unix__
+#ifdef _WIN32
     system("chcp 65001");
 #endif
 
