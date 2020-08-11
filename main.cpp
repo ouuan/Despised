@@ -95,7 +95,7 @@ vector<Problem> problems = {
     {"Linux 系统中杀死名为 test 的后台进程的命令是", {{"killall test", true}, {"kill test"}, {"rm test"}, {"close test"}}},
     {"Linux 系统中可以查看隐藏文件的命令是", {{"ls -a", true}, {"ls -l"}, {"ls -h"}, {"ls -R"}}},
     {"Linux 系统中编译 C++ 程序的编译器是", {{"g++", true}, {"gcc"}, {"gdb"}, {"fpc"}}},
-    {"Linux 系统中，将当前目录下的文件名打印到 tmp 文件中的命令是", {{"ls > tmp", true}, {"ls < tmp"}, {"ls tmp"}, {"ls -o tmp"}}},
+    {"Linux 系统中，将当前目录下的文件名打印到 tmp 文件中的命令是", {{"ls >tmp", true}, {"ls <tmp"}, {"ls tmp"}, {"ls -o tmp"}}},
     {"Linux 系统中，测量当前目录下程序 test 运行时间的命令是", {{"time ./test", true}, {"time test"}, {"time ../test"}, {"time test.exe"}}},
     {"vim 编辑器中，强制退出不保存修改应当输入", {{":q!", true}, {":wq"}, {":w!"}, {"q"}}},
     {"vim 编辑器中，强制退出并保存修改可输入以下三种命令之一", {{":wq", true}, {"ZZ", true}, {":x", true}, {":w!"}}},
