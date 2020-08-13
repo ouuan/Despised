@@ -1,0 +1,54 @@
+name: "Update AUR"
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "**.md"
+      - ".gitignore"
+
+env:
+  PKGNAME: noi-despised-git
+
+jobs:
+  aur:
+    name: "Update AUR"
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'ouuan'
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get Version
+        id: get-version
+        run: echo "::set-output name=version::$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")"
+
+      - name: Update PKGBUILD
+        run: |
+          sed -i "s/@VERSION@/${{ steps.get-version.outputs.version }}/" aur/PKGBUILD aur/.SRCINFO
+          mv aur "$PKGNAME"
+
+      - name: Check PKGBUILD
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: pkgbuild
+          pkgname: ${{ env.PKGNAME }}
+
+      - name: Check .SRCINFO
+        uses: 2m/arch-pkgbuild-builder@master
+        with:
+          target: srcinfo
+          pkgname: ${{ env.PKGNAME }}
+
+      - name: Publish to AUR
+        uses: KSXGitHub/github-actions-deploy-aur@master
+        with:
+          pkgname: ${{ env.PKGNAME }}
+          pkgbuild: ${{ env.PKGNAME }}/PKGBUILD
+          commit_username: Yufan You
+          commit_email: ouuansteve@gmail.com
+          commit_message: "Update from GitHub Actions: ${{ steps.get-version.outputs.version }}\n\nThe run ID: ${{ github.run_id }}"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}

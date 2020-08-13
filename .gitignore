@@ -2,6 +2,7 @@
 !*/
 !*.*
 !LICENSE
+!aur/PKGBUILD
 *.exe
 wrong.txt
 .vscode
