@@ -1,5 +1,8 @@
 # Despised
 
+[![Build Test](https://github.com/ouuan/Despised/workflows/Build%20Test/badge.svg)](https://github.com/ouuan/Despised/actions?query=workflow%3A%22Build+Test%22)
+[![AUR version](https://img.shields.io/aur/version/noi-despised-git)](https://aur.archlinux.org/packages/noi-despised-git/)
+
 乱写的一个背笔试的小程序，很多预想的功能都咕掉了..
 
 主要特色可能是记录用时与正确率，着重测验不熟悉的题目？（然而导入历史记录被咕掉了）
