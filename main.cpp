@@ -2,7 +2,6 @@
 #include <chrono>
 #include <csignal>
 #include <cstdio>
-#include <fstream>
 #include <iostream>
 #include <queue>
 #include <random>
@@ -259,13 +258,12 @@ void wa(int id)
 
 void quit()
 {
-    ofstream fout("wrong.txt");
     for (const auto &problem : problems)
     {
         if (problem.acCount == problem.totalCount)
             continue;
-        fout << "AC Rate: " << problem.acCount << " / " << problem.totalCount << endl;
-        fout << problem << endl;
+        cerr << "AC Rate: " << problem.acCount << " / " << problem.totalCount << endl;
+        cerr << problem << endl;
     }
     exit(0);
 }
