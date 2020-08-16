@@ -5,5 +5,4 @@
 !aur/PKGBUILD
 *.exe
 wrong.txt
-!problem.conf
 .vscode
