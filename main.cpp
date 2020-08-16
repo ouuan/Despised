@@ -109,6 +109,7 @@ void pause()
 #ifdef _WIN32
     system("pause");
 #else
+    puts("按任意键继续...");
     system("read -n1");
 #endif
 }
@@ -194,7 +195,6 @@ int main()
     clearScreen();
     puts("答题时请输入正确选项的编号，可能多选，编号间不带空格，顺序随意，输入 q 退出\n");
     puts("https://github.com/ouuan/Despised\n");
-    puts("按任意键继续...");
     pause();
 
     for (int i = 0; i < (int)problems.size(); ++i)
