@@ -37,7 +37,7 @@ struct Problem
         }
         if (answerCnt > 1)
         {
-            multianswer = true;     
+            multianswer = true;
         }
     }
 
@@ -86,7 +86,8 @@ struct Problem
 
     friend ostream &operator<<(ostream &os, const Problem &problem)
     {
-        if (problem.multianswer) {
+        if (problem.multianswer)
+        {
             os << "\033[34m[多选题]\033[0m ";
         }
         os << problem.statement << endl;
