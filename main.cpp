@@ -86,10 +86,10 @@ struct Problem
 
     friend ostream &operator<<(ostream &os, const Problem &problem)
     {
-        os << problem.statement << endl;
         if (problem.multianswer) {
-            os << "多选题" << endl;
+            os << "\033[34m[多选题]\033[0m ";
         }
+        os << problem.statement << endl;
         for (int i = 0; i < (int)problem.options.size(); ++i)
             os << i + 1 << ") " << problem.options[i].text << endl;
         return os;
