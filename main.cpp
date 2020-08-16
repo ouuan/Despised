@@ -24,11 +24,22 @@ struct Problem
 {
     string statement;
     vector<Option> options;
+    bool multianswer;
     double totalAcTime;
     int acCount, totalCount;
 
-    Problem(const string &_statement, const vector<Option> &_options) : statement(_statement), options(_options), totalAcTime(0), acCount(0), totalCount(0)
-    {}
+    Problem(const string &_statement, const vector<Option> &_options) : statement(_statement), options(_options), multianswer(false), totalAcTime(0), acCount(0), totalCount(0)
+    {
+        int answerCnt = 0;
+        for (Option option : options)
+        {
+            answerCnt += option.correct;
+        }
+        if (answerCnt > 1)
+        {
+            multianswer = true;     
+        }
+    }
 
     double weight() const
     {
@@ -76,6 +87,9 @@ struct Problem
     friend ostream &operator<<(ostream &os, const Problem &problem)
     {
         os << problem.statement << endl;
+        if (problem.multianswer) {
+            os << "多选题" << endl;
+        }
         for (int i = 0; i < (int)problem.options.size(); ++i)
             os << i + 1 << ") " << problem.options[i].text << endl;
         return os;
