@@ -97,7 +97,7 @@ struct Problem
     }
 };
 
-#include "problem.conf"
+#include "problem.h"
 
 double totalAcTime;
 int acCount, totalCount, combo, distinctAc;
