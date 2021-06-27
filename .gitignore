@@ -1,8 +1,4 @@
-*
-!*/
-!*.*
-!LICENSE
-!aur/PKGBUILD
 *.exe
-wrong.txt
+despised
+*.o
 .vscode
