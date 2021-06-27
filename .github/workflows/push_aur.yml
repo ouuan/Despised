@@ -35,7 +35,7 @@ jobs:
           path: aur
 
       - name: Publish to AUR
-        uses: KSXGitHub/github-actions-deploy-aur@master
+        uses: KSXGitHub/github-actions-deploy-aur@40901a3bceb045a3b1bcf168fceffbaba762b3b1
         with:
           pkgname: ${{ env.PKGNAME }}
           pkgbuild: aur/PKGBUILD
