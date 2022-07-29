@@ -104,7 +104,7 @@ int acCount, totalCount, combo, distinctAc;
 
 priority_queue<pair<double, int>> q;
 
-void pause()
+void waitAnyKey()
 {
 #ifdef _WIN32
     system("pause");
@@ -135,7 +135,7 @@ void ac(int id, double t)
     totalAcTime += t;
     problems[id].totalAcTime += t;
     printf("\033[44;42;1mAccepted\033[0m in %.2lf seconds.\n\n", t);
-    pause();
+    waitAnyKey();
 }
 
 void wa(int id)
@@ -144,7 +144,7 @@ void wa(int id)
     ++totalCount;
     combo = 0;
     printf("\033[37;41;1mWrong Answer\033[0m, expected %s\n\n", problems[id].answer().c_str());
-    pause();
+    waitAnyKey();
 }
 
 void quit()
@@ -195,7 +195,7 @@ int main()
     clearScreen();
     puts("答题时请输入正确选项的编号，可能多选，编号间不带空格，顺序随意，输入 q 退出\n");
     puts("https://github.com/ouuan/Despised\n");
-    pause();
+    waitAnyKey();
 
     for (int i = 0; i < (int)problems.size(); ++i)
         q.emplace(1.0 * rng() / rng.max(), i);
