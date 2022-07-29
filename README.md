@@ -9,7 +9,7 @@
 
 （而且使用键盘输入，非常方便。）
 
-（大）部分题目数据来自 https://duck.ac/beibishi ，并对照 NOI2020 笔试题库核对过。（题目有锅请联系 ouuan。）
+（大）部分题目数据来自 https://duck.ac/beibishi ，每年会根据笔试题库更新题目。（如果发现题目有锅请开 [issue](https://github.com/ouuan/Despised/issues) 或 [PR](https://github.com/ouuan/Despised/pulls)）
 
 ## 使用说明
 
