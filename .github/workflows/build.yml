@@ -16,11 +16,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build
         run: g++ main.cpp -o despised -std=c++11 -Wall -Wextra -Wshadow -Werror
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: despised-${{ matrix.os }}-${{ github.sha }}
           path: despised*

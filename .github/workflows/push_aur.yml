@@ -18,7 +18,7 @@ jobs:
     if: github.repository_owner == 'ouuan'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -35,7 +35,7 @@ jobs:
           path: aur
 
       - name: Publish to AUR
-        uses: KSXGitHub/github-actions-deploy-aur@40901a3bceb045a3b1bcf168fceffbaba762b3b1
+        uses: KSXGitHub/github-actions-deploy-aur@v2
         with:
           pkgname: ${{ env.PKGNAME }}
           pkgbuild: aur/PKGBUILD
