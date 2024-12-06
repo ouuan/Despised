@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: g++ main.cpp -o despised -std=c++11 -Wall -Wextra -Wshadow -Werror
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: despised-${{ matrix.os }}-${{ github.sha }}
           path: despised*
