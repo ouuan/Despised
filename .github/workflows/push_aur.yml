@@ -24,7 +24,7 @@ jobs:
 
       - name: Get Version
         id: get-version
-        run: echo "::set-output name=version::$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")"
+        run: echo "version=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")" >> "$GITHUB_OUTPUT"
 
       - name: Update PKGBUILD
         run: sed -i "s/@VERSION@/${{ steps.get-version.outputs.version }}/" aur/PKGBUILD
